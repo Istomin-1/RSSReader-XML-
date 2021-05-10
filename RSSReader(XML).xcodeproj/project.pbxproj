@@ -9,21 +9,37 @@
 /* Begin PBXBuildFile section */
 		74A55B4C26496F3D003BFC82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B4B26496F3D003BFC82 /* AppDelegate.swift */; };
 		74A55B4E26496F3D003BFC82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B4D26496F3D003BFC82 /* SceneDelegate.swift */; };
-		74A55B5026496F3D003BFC82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B4F26496F3D003BFC82 /* ViewController.swift */; };
 		74A55B5326496F3D003BFC82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A55B5126496F3D003BFC82 /* Main.storyboard */; };
 		74A55B5526496F3F003BFC82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74A55B5426496F3F003BFC82 /* Assets.xcassets */; };
 		74A55B5826496F3F003BFC82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A55B5626496F3F003BFC82 /* LaunchScreen.storyboard */; };
+		74A55B60264974CA003BFC82 /* NewsCategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B5F264974CA003BFC82 /* NewsCategoriesTableViewController.swift */; };
+		74A55B622649768E003BFC82 /* ListOfSubscriptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B612649768E003BFC82 /* ListOfSubscriptionsTableViewController.swift */; };
+		74A55B64264977A8003BFC82 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B63264977A8003BFC82 /* CategoryTableViewCell.swift */; };
+		74A55B66264977E8003BFC82 /* SubscriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B65264977E8003BFC82 /* SubscriptionTableViewCell.swift */; };
+		74A55B6826497AC4003BFC82 /* ListNewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B6726497AC4003BFC82 /* ListNewsTableViewController.swift */; };
+		74A55B6C26497C49003BFC82 /* FeedsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B6B26497C49003BFC82 /* FeedsListTableViewController.swift */; };
+		74A55B6E26497CCD003BFC82 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B6D26497CCD003BFC82 /* FeedTableViewCell.swift */; };
+		74A55B7026497CF7003BFC82 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B6F26497CF7003BFC82 /* NewsTableViewCell.swift */; };
+		74A55B7226497D73003BFC82 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55B7126497D73003BFC82 /* NewsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		74A55B4826496F3D003BFC82 /* RSSReader(XML).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSSReader(XML).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A55B4B26496F3D003BFC82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74A55B4D26496F3D003BFC82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		74A55B4F26496F3D003BFC82 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		74A55B5226496F3D003BFC82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74A55B5426496F3F003BFC82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74A55B5726496F3F003BFC82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74A55B5926496F3F003BFC82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74A55B5F264974CA003BFC82 /* NewsCategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoriesTableViewController.swift; sourceTree = "<group>"; };
+		74A55B612649768E003BFC82 /* ListOfSubscriptionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfSubscriptionsTableViewController.swift; sourceTree = "<group>"; };
+		74A55B63264977A8003BFC82 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		74A55B65264977E8003BFC82 /* SubscriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTableViewCell.swift; sourceTree = "<group>"; };
+		74A55B6726497AC4003BFC82 /* ListNewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNewsTableViewController.swift; sourceTree = "<group>"; };
+		74A55B6B26497C49003BFC82 /* FeedsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsListTableViewController.swift; sourceTree = "<group>"; };
+		74A55B6D26497CCD003BFC82 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		74A55B6F26497CF7003BFC82 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		74A55B7126497D73003BFC82 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +72,63 @@
 		74A55B4A26496F3D003BFC82 /* RSSReader(XML) */ = {
 			isa = PBXGroup;
 			children = (
-				74A55B4B26496F3D003BFC82 /* AppDelegate.swift */,
-				74A55B4D26496F3D003BFC82 /* SceneDelegate.swift */,
-				74A55B4F26496F3D003BFC82 /* ViewController.swift */,
-				74A55B5126496F3D003BFC82 /* Main.storyboard */,
-				74A55B5426496F3F003BFC82 /* Assets.xcassets */,
-				74A55B5626496F3F003BFC82 /* LaunchScreen.storyboard */,
-				74A55B5926496F3F003BFC82 /* Info.plist */,
+				74A55B6926497B0F003BFC82 /* Controllers */,
+				74A55B6A26497B35003BFC82 /* Views */,
+				74A55B752649800F003BFC82 /* Supporting Files */,
+				74A55B7426497FD4003BFC82 /* Resources */,
 			);
 			path = "RSSReader(XML)";
+			sourceTree = "<group>";
+		};
+		74A55B6926497B0F003BFC82 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				74A55B5F264974CA003BFC82 /* NewsCategoriesTableViewController.swift */,
+				74A55B6B26497C49003BFC82 /* FeedsListTableViewController.swift */,
+				74A55B612649768E003BFC82 /* ListOfSubscriptionsTableViewController.swift */,
+				74A55B6726497AC4003BFC82 /* ListNewsTableViewController.swift */,
+				74A55B7126497D73003BFC82 /* NewsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		74A55B6A26497B35003BFC82 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				74A55B63264977A8003BFC82 /* CategoryTableViewCell.swift */,
+				74A55B6D26497CCD003BFC82 /* FeedTableViewCell.swift */,
+				74A55B65264977E8003BFC82 /* SubscriptionTableViewCell.swift */,
+				74A55B6F26497CF7003BFC82 /* NewsTableViewCell.swift */,
+				74A55B7326497DE9003BFC82 /* Storyboards */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		74A55B7326497DE9003BFC82 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				74A55B5126496F3D003BFC82 /* Main.storyboard */,
+				74A55B5626496F3F003BFC82 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		74A55B7426497FD4003BFC82 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				74A55B5426496F3F003BFC82 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		74A55B752649800F003BFC82 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				74A55B4B26496F3D003BFC82 /* AppDelegate.swift */,
+				74A55B4D26496F3D003BFC82 /* SceneDelegate.swift */,
+				74A55B5926496F3F003BFC82 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +201,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74A55B5026496F3D003BFC82 /* ViewController.swift in Sources */,
+				74A55B6826497AC4003BFC82 /* ListNewsTableViewController.swift in Sources */,
+				74A55B66264977E8003BFC82 /* SubscriptionTableViewCell.swift in Sources */,
+				74A55B7026497CF7003BFC82 /* NewsTableViewCell.swift in Sources */,
+				74A55B64264977A8003BFC82 /* CategoryTableViewCell.swift in Sources */,
+				74A55B7226497D73003BFC82 /* NewsViewController.swift in Sources */,
+				74A55B6C26497C49003BFC82 /* FeedsListTableViewController.swift in Sources */,
 				74A55B4C26496F3D003BFC82 /* AppDelegate.swift in Sources */,
+				74A55B6E26497CCD003BFC82 /* FeedTableViewCell.swift in Sources */,
+				74A55B60264974CA003BFC82 /* NewsCategoriesTableViewController.swift in Sources */,
+				74A55B622649768E003BFC82 /* ListOfSubscriptionsTableViewController.swift in Sources */,
 				74A55B4E26496F3D003BFC82 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,7 +360,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9FX9R88448;
-				INFOPLIST_FILE = "RSSReader(XML)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/RSSReader(XML)/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -296,7 +369,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.istomin.mikhail.91.RSSReader-XML-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -307,7 +380,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9FX9R88448;
-				INFOPLIST_FILE = "RSSReader(XML)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/RSSReader(XML)/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,7 +389,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.istomin.mikhail.91.RSSReader-XML-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
