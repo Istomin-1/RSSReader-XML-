@@ -112,13 +112,47 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newsCell" id="efG-LJ-zMH" customClass="NewsTableViewCell" customModule="RSSReader_XML_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="efG-LJ-zMH" id="0Jb-Fc-czK">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="81"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="CTi-1h-kcx">
+                                            <rect key="frame" x="20" y="11" width="374" height="59"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTF-2J-JaV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="44.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWR-ag-UD6">
+                                                    <rect key="frame" x="0.0" y="26" width="33" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSU-dc-UBe">
+                                                    <rect key="frame" x="0.0" y="47" width="26.5" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="CTi-1h-kcx" firstAttribute="top" secondItem="0Jb-Fc-czK" secondAttribute="topMargin" id="7RS-MB-7n5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="CTi-1h-kcx" secondAttribute="trailing" id="ZXP-p7-BsS"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="CTi-1h-kcx" secondAttribute="bottom" id="kN3-49-KjN"/>
+                                        <constraint firstItem="CTi-1h-kcx" firstAttribute="leading" secondItem="0Jb-Fc-czK" secondAttribute="leadingMargin" id="prh-Jc-3DI"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="descriptionNewsLabel" destination="yWR-ag-UD6" id="uTG-Vs-ljK"/>
+                                    <outlet property="publicationDateLabel" destination="mSU-dc-UBe" id="Lau-ce-Mmr"/>
+                                    <outlet property="titleNewsLabel" destination="sTF-2J-JaV" id="wIo-HU-Ao2"/>
                                     <segue destination="Uue-zk-ePM" kind="presentation" id="aic-27-tOR"/>
                                 </connections>
                             </tableViewCell>
@@ -132,7 +166,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mit-8g-AQC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900" y="443"/>
+            <point key="canvasLocation" x="1900.0000000000002" y="442.63392857142856"/>
         </scene>
         <!--News View Controller-->
         <scene sceneID="uzQ-ZL-efw">

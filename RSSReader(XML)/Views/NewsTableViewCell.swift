@@ -9,9 +9,33 @@ import UIKit
 
 class NewsTableViewCell: UITableViewCell {
 
-    var news: String! {
+    @IBOutlet weak var titleNewsLabel: UILabel! {
         didSet {
-            textLabel?.text = news
+            titleNewsLabel.numberOfLines = 2
+        }
+    }
+    @IBOutlet weak var descriptionNewsLabel: UILabel! {
+        didSet {
+            descriptionNewsLabel.numberOfLines = 3
+        }
+    }
+    @IBOutlet weak var publicationDateLabel: UILabel!
+    
+    var news: RSSItem! {
+        didSet {
+            titleNewsLabel.text = news.title
+            descriptionNewsLabel.text = news.description
+            
+            let timeStringGet = DateFormatter()
+            timeStringGet.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+            
+            let timePrint = DateFormatter()
+            timePrint.dateFormat = "E, d MMM yyyy HH:mm"
+            
+            guard let timeNew = timeStringGet.date(from: news.publicationDate) else { return }
+            let timeString = timePrint.string(from: timeNew)
+            
+            publicationDateLabel.text = timeString
         }
     }
 }

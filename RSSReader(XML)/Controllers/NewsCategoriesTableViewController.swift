@@ -9,13 +9,11 @@ import UIKit
 
 class NewsCategoriesTableViewController: UITableViewController {
     
-    private var categories = [String]()
+    private var categories = NewsCategories.allCases
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let start: Set<String> = ["Sport", "Tech"]
-        categories.append(contentsOf: start)
     }
 
     // MARK: - Table view data source
@@ -33,7 +31,8 @@ class NewsCategoriesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
         
         let cayegory = categories[indexPath.row]
-        cell.category = cayegory
+        cell.category = cayegory.rawValue
+        
         return cell
     }
 }

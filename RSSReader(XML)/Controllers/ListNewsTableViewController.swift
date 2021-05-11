@@ -9,13 +9,27 @@ import UIKit
 
 class ListNewsTableViewController: UITableViewController {
     
+    private var rssItems: [RSSItem]?
     private var allNews = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let start: Set<String> = ["What?", "Yes!"]
-        allNews.append(contentsOf: start)
+        fetchData()
+//        let start: Set<String> = ["What?", "Yes!"]
+//        allNews.append(contentsOf: start)
     }
+    
+    private func fetchData() {
+        let feedParser = FeedParser()
+        feedParser.parseFeed(url: "https://www.sport-express.ru/services/materials/news/football/se/") { rssItems in
+            self.rssItems = rssItems
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
+            }
+        }
+    }
+    
 
     // MARK: - Table view data source
 
@@ -24,13 +38,14 @@ class ListNewsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allNews.count
+        guard let rssItems = rssItems else { return 0 }
+        return rssItems.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as! NewsTableViewCell
         
-        let news = allNews[indexPath.row]
+        let news = rssItems?[indexPath.row]
         cell.news = news
         
         return cell
