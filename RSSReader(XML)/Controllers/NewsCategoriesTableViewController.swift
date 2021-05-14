@@ -35,4 +35,14 @@ class NewsCategoriesTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "subscriptionsSegue" {
+            let indexPath = tableView.indexPathForSelectedRow!
+            let category = categories[indexPath.row]
+            let feedslistTVC = segue.destination as! FeedsListTableViewController
+            feedslistTVC.feeds = category
+        }
+    }
+    
 }

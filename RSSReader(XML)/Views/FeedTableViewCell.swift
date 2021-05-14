@@ -9,10 +9,10 @@ import UIKit
 
 class FeedTableViewCell: UITableViewCell {
 
-    var feed: RSSItem! {
+    var feed: String! {
         didSet {
-            textLabel?.text = feed.title
-            detailTextLabel?.text = feed.description
+            textLabel?.text = feed
+//            accessoryType = .none
         }
     }
 }

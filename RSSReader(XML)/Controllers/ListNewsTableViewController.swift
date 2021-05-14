@@ -10,26 +10,25 @@ import UIKit
 class ListNewsTableViewController: UITableViewController {
     
     private var rssItems: [RSSItem]?
-    private var allNews = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
-//        let start: Set<String> = ["What?", "Yes!"]
-//        allNews.append(contentsOf: start)
     }
     
     private func fetchData() {
         let feedParser = FeedParser()
-        feedParser.parseFeed(url: "https://www.sport-express.ru/services/materials/news/football/se/") { rssItems in
+        feedParser.parseFeed(url: "https://www.sport-express.ru/services/materials/news/hockey/se/") { rss in
+            var rssItems = rss
+            rssItems.removeFirst()
             self.rssItems = rssItems
-            
+         
             DispatchQueue.main.async {
                 self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
+                self.navigationItem.title = rss.first!.titleFeed
             }
         }
     }
-    
 
     // MARK: - Table view data source
 
@@ -53,7 +52,16 @@ class ListNewsTableViewController: UITableViewController {
     
     @IBAction func unwindToListNews(segue: UIStoryboardSegue) {
         if segue.identifier == "dismissConfirmation" {
-            
+            tableView.reloadData()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "newsSegue" {
+            let indexPath = tableView.indexPathForSelectedRow!
+            let rssItem = rssItems?[indexPath.row]
+            let newsVC = segue.destination as! NewsViewController
+            newsVC.rssItem = rssItem
         }
     }
 }

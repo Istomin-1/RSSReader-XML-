@@ -8,11 +8,11 @@
 import Foundation
 
 enum NewsCategories: String, CaseIterable {
-    case football = "Футбол"
-    case hockey = "Хоккей"
-    case basketball = "Баскетбол"
-    case tennis = "Теннис"
-    case formula1 = "Формула-1"
+    case football = "Football"
+    case hockey = "Hockey"
+    case basketball = "Basketball"
+    case tennis = "Tennis"
+    case formula1 = "Formula-1"
 }
 
 //let feeds = NewsCategories.hockey

@@ -11,12 +11,6 @@ struct RSSItem {
     var title: String
     var description: String
     var publicationDate: String
-//    {
-//        didSet {
-//            let date = DateFormatter()
-//            date.dateFormat = "HH:mm"
-//            let dateString = date.string(from: publicationDate)
-//        }
-//    }
+    var titleFeed: String
 }
 

@@ -9,59 +9,81 @@ import UIKit
 
 class FeedsListTableViewController: UITableViewController {
     
-    private var rssItems: [String]?
-//    var feeds = [String]()
+    var chacked = Bool()
     
-    var feeds = NewsCategories.football
+    var selectedIndexPaths = [IndexPath]()
     
-    func update () {
-        switch feeds {
-        case .football: rssItems = ["https://www.sport-express.ru/services/materials/news/football/se/", "https://www.sport-express.ru/services/materials/news/hockey/se/"]
-        case .hockey: rssItems = ["https://www.sport-express.ru/services/materials/news/hockey/se/"]
-        case .basketball: rssItems = ["https://www.sport-express.ru/services/materials/news/basketball/se/"]
-        case .tennis: rssItems = ["https://www.sport-express.ru/services/materials/news/tennis/se/"]
-        case .formula1: rssItems = ["https://www.sport-express.ru/services/materials/news/formula1/se/"]
-        }
+    private var rssFeeds = [String]()
+    
+    private var titleOne = [RSSItem]()
+    
+    var feeds = NewsCategories(rawValue: "")
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadFavouriteStatus()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
-//        let start: Set<String> = ["Wow", "Boom"]
-//        feeds.append(contentsOf: start)
+        update1()
+        
+        navigationItem.title = feeds?.rawValue
     }
-
-    private func fetchData() {
-        for rssItem in rssItems! {
-        let feedParser = FeedParser()
-        feedParser.parseFeed(url: rssItem) { rssItems in
-//            self.rssItems = rssItems
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
-        }
-        }
+    
+    func update1 () {
+        switch feeds {
+        case .football: rssFeeds = ["Football - Rambler", "Sport.Ru / Footbal", "Sport - Express. Football"]
+        case .hockey: rssFeeds = ["Hockey - Rambler", "Sport.Ru / Hockey", "Sport - Express. Hockey"]
+        case .basketball: rssFeeds = ["Basketball - Rambler", "Sport.Ru / Basketball", "Sport - Express. Basketball"]
+        case .tennis: rssFeeds = ["Tennis - Rambler", "Sport.Ru / Tennis", "Sport - Express. Tennis"]
+        case .formula1: rssFeeds = ["Formula-1 - Rambler", "Sport.Ru / Formula-1", "Sport - Express. Formula-1"]
+        case .none:
+            break
         }
     }
     
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard let rssItems = rssItems else { return 0 }
-        return rssItems.count
+        return rssFeeds.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell", for: indexPath) as! FeedTableViewCell
         
-        let feed = rssItems?[indexPath.row]
-//        cell.feed = feed
-
+        let feed = rssFeeds[indexPath.row]
+        cell.feed = feed
+        
+        if chacked == false {
+            cell.accessoryType = .none
+        } else {
+            cell.accessoryType = .checkmark
+        }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if cell.accessoryType == .checkmark {
+                cell.accessoryType = .none
+                let index = rssFeeds[indexPath.row]
+                DataManager.shared.saveFavouriteStatus(for: index, with: false)
+            } else {
+                cell.accessoryType = .checkmark
+                let index = rssFeeds[indexPath.row]
+                DataManager.shared.saveFavouriteStatus(for: index, with: true)
+            }
+        }
+    }
+    
+    private func loadFavouriteStatus() {
+        for rssFeed in rssFeeds {
+            chacked = DataManager.shared.loadFavouriteStatus(for: rssFeed)
+        }
     }
 }

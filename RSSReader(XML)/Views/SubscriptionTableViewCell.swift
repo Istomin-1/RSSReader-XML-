@@ -12,6 +12,7 @@ class SubscriptionTableViewCell: UITableViewCell {
     var subscription: String! {
         didSet {
             textLabel?.text = subscription
+           
         }
     }
 }
