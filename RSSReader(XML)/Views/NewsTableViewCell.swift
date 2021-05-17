@@ -16,7 +16,7 @@ class NewsTableViewCell: UITableViewCell {
     }
     @IBOutlet weak var descriptionNewsLabel: UILabel! {
         didSet {
-            descriptionNewsLabel.numberOfLines = 3
+            descriptionNewsLabel.numberOfLines = 2
         }
     }
     @IBOutlet weak var publicationDateLabel: UILabel!

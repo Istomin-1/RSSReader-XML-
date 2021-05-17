@@ -9,15 +9,8 @@ import Foundation
 
 class FeedParser: NSObject, XMLParserDelegate {
     
+    //    MARK: - Properties
     private var rssItems: [RSSItem] = []
-//    private var rssFeed = RSSFeed(titleFeed: "")
-    
-
-    private var titleFeed: String = "" {
-        didSet {
-            titleFeed = titleFeed.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        }
-    }
     private var currentElement = ""
     
     private var currentTitle: String = "" {
@@ -37,6 +30,7 @@ class FeedParser: NSObject, XMLParserDelegate {
     }
     private var parseComplitionHandler: (([RSSItem]) -> Void)?
     
+    //    MARK: - Parse Data
     func parseFeed(url: String, complitionHandler: (([RSSItem]) -> Void)?) {
         self.parseComplitionHandler = complitionHandler
         
@@ -56,26 +50,18 @@ class FeedParser: NSObject, XMLParserDelegate {
         task.resume()
     }
     
-    // MARK: XML Parser Delegate
-    
+    // MARK: - XML Parser Delegate
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElement = elementName
-        
-        if currentElement == "channel" {
-            titleFeed = ""
-        } else if currentElement == "item" {
+
+        if currentElement == "item" {
             currentTitle = ""
             currentDescription = ""
             currentPublicationDate = ""
         }
-    
     }
-    
-    
+
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-        if currentElement == "title" {
-            titleFeed += string
-        }
         switch currentElement {
         case "title": currentTitle += string
         case "description": currentDescription += string
@@ -84,11 +70,10 @@ class FeedParser: NSObject, XMLParserDelegate {
         }
     }
     
-    
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
 
-            if elementName == "title" {
-                let rssItem = RSSItem(title: currentTitle, description: currentDescription, publicationDate: currentPublicationDate, titleFeed: titleFeed)
+            if elementName == "item" {
+                let rssItem = RSSItem(title: currentTitle, description: currentDescription, publicationDate: currentPublicationDate)
             self.rssItems.append(rssItem)
         }
     }

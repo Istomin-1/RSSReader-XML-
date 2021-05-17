@@ -2,22 +2,34 @@
 //  DataManager.swift
 //  RSSReader(XML)
 //
-//  Created by Mikhail on 14.05.2021.
+//  Created by Mikhail on 17.05.2021.
 //
 
 import Foundation
 
 class DataManager {
     
+    private enum SettingKeys: String {
+        case userSub
+    }
+    
     static let shared = DataManager()
-    private let userDefaults = UserDefaults()
     
-    func saveFavouriteStatus(for titleFeed: String, with status: Bool) {
-        userDefaults.set(status, forKey: titleFeed)
+    func saveFavouriteFeed(for title: String, with status: Bool) {
+        UserDefaults.standard.set(status, forKey: title)
     }
     
-    func loadFavouriteStatus(for titleFeed: String) -> Bool {
-        return userDefaults.bool(forKey: titleFeed)
+    func loadFavouriteStatus(for title: String) -> Bool {
+        return UserDefaults.standard.bool(forKey: title)
     }
     
+    var subscriptionsTitle: [String] {
+        get {
+            guard let array = UserDefaults.standard.array(forKey: SettingKeys.userSub.rawValue) as? [String] else { return [] }
+            return array
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: SettingKeys.userSub.rawValue)
+        }
+    }
 }

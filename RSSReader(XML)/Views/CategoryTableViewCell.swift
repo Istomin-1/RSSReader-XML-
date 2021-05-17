@@ -8,10 +8,11 @@
 import UIKit
 
 class CategoryTableViewCell: UITableViewCell {
-
+    
     var category: String! {
         didSet {
             textLabel?.text = category
+            textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         }
     }
 }

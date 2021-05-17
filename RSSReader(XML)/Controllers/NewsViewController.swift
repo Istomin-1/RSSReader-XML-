@@ -9,16 +9,31 @@ import UIKit
 
 class NewsViewController: UIViewController {
     
+    //    MARK: - Properties
     var rssItem: RSSItem!
     
-    @IBOutlet weak var news: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        news.text = rssItem.title
-        descriptionLabel.text = rssItem.description
-        dateLabel.text = rssItem.publicationDate
+    @IBOutlet weak var news: UILabel! {
+        didSet {
+            news.text = rssItem.title
+        }
+    }
+    @IBOutlet weak var descriptionLabel: UILabel! {
+        didSet {
+            descriptionLabel.text = rssItem.description
+        }
+    }
+    @IBOutlet weak var dateLabel: UILabel! {
+        didSet {
+            let timeStringGet = DateFormatter()
+            timeStringGet.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+            
+            let timePrint = DateFormatter()
+            timePrint.dateFormat = "E, d MMM yyyy HH:mm"
+            
+            guard let timeNew = timeStringGet.date(from: rssItem.publicationDate) else { return }
+            let timeString = timePrint.string(from: timeNew)
+            
+            dateLabel.text = timeString
+        }
     }
 }

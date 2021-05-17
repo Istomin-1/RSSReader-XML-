@@ -9,59 +9,56 @@ import UIKit
 
 class ListOfSubscriptionsTableViewController: UITableViewController {
     
-    var subscriptions = [String]()
-   
+    //    MARK: - Life Cicle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        NotificationCenter.default.addObserver(tableView, selector: #selector(UITableView.reloadData), name: SubscriptionsController.subscriptionUpdateNotification, object: nil)
+        navigationItem.leftBarButtonItem = editButtonItem
+        NotificationCenter.default.addObserver(tableView!, selector: #selector(UITableView.reloadData), name: SubscriptionsController.subscriptionUpdateNotification, object: nil)
     }
     
-//    private func fetchData() {
-//        for rssItem in rssFeeds {
-//            let feedParser = FeedParser()
-//            feedParser.parseFeed(url: rssItem) { rssFeedTitle  in
-//            
-//                guard let title = rssFeedTitle.first else { return }
-//                self.titleOne.append(title)
-//                
-//                DispatchQueue.main.async {
-//                    let newIndexPath = IndexPath(row: self.titleOne.count - 1, section: 0)
-//                    self.tableView.insertRows(at: [newIndexPath], with: .automatic)
-//                    self.tableView.reloadData()
-//                }
-//            }
-//        }
-//    }
-    
-//    func update () {
-//        switch feeds {
-//        case .football: rssFeeds = ["https://www.sport-express.ru/services/materials/news/football/se/", "https://www.sport.ru/rssfeeds/football.rss", "https://sport.rambler.ru/rss/football/"]
-//        case .hockey: rssFeeds = ["https://www.sport-express.ru/services/materials/news/hockey/se/", "https://www.sport.ru/rssfeeds/hockey.rss", "https://sport.rambler.ru/rss/hockey/", "https://news.yandex.ru/hockey.html?from=rss"]
-//        case .basketball: rssFeeds = ["https://www.sport-express.ru/services/materials/news/basketball/se/", "https://www.sport.ru/rssfeeds/basketball.rss", "https://sport.rambler.ru/rss/basketball/"]
-//        case .tennis: rssFeeds = ["https://www.sport-express.ru/services/materials/news/tennis/se/", "https://www.sport.ru/rssfeeds/tennis.rss", "https://sport.rambler.ru/rss/tennis/"]
-//        case .formula1: rssFeeds = ["https://www.sport-express.ru/services/materials/news/formula1/se/", "https://www.sport.ru/rssfeeds/formula1.rss", "https://sport.rambler.ru/rss/autosport/"]
-//        case .none:
-//            break
-//        }
-//    }
-    
-
-    // MARK: - Table view data source
-
+    // MARK: - Table view data source + delegate
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SubscriptionsController.shared.subscriptionsFeed.count
     }
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "subscriptionCell", for: indexPath) as! SubscriptionTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "subscriptionCell", for: indexPath) as! AllNewsTableViewCell
         
-        let subscription = subscriptions[indexPath.row]
+        let subscription = SubscriptionsController.shared.subscriptionsFeed[indexPath.row]
+        
         cell.subscription = subscription
-
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let index = SubscriptionsController.shared.subscriptionsFeed[indexPath.row]
+            DataManager.shared.saveFavouriteFeed(for: index, with: false)
+            SubscriptionsController.shared.subscriptionsFeed.remove(at: indexPath.row)
+            DataManager.shared.subscriptionsTitle.remove(at: indexPath.row)
+        }
+    }
+    
+    //    MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "feedSegue" {
+            let indexPath = tableView.indexPathForSelectedRow!
+            let subscription = SubscriptionsController.shared.subscriptionsFeed[indexPath.row]
+            let newsTVC = segue.destination as! ListNewsTableViewController
+            newsTVC.rssFeed = subscription
+        }
     }
 }

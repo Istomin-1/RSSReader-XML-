@@ -9,57 +9,63 @@ import UIKit
 
 class FeedsListTableViewController: UITableViewController {
     
-    var chacked = Bool()
-    
-    var selectedIndexPaths = [IndexPath]()
-    
-    private var rssFeeds = [String]()
-    
-    private var titleOne = [RSSItem]()
-    
+    //    MARK: - Properties
+    private var checkmark = [Bool]()
+    private var newsTitle = [String]()
     var feeds = NewsCategories(rawValue: "")
     
+    //    MARK: - Life Cicle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadFavouriteStatus()
+        loadCheckmark()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        update1()
-        
+        updateFeeds()
         navigationItem.title = feeds?.rawValue
     }
     
-    func update1 () {
+    //    MARK: - Private Functions
+    private func loadCheckmark() {
+        for news in newsTitle {
+            let newNews = DataManager.shared.loadFavouriteStatus(for: news)
+            checkmark.append(newNews)
+        }
+    }
+    
+    private func updateFeeds () {
         switch feeds {
-        case .football: rssFeeds = ["Football - Rambler", "Sport.Ru / Footbal", "Sport - Express. Football"]
-        case .hockey: rssFeeds = ["Hockey - Rambler", "Sport.Ru / Hockey", "Sport - Express. Hockey"]
-        case .basketball: rssFeeds = ["Basketball - Rambler", "Sport.Ru / Basketball", "Sport - Express. Basketball"]
-        case .tennis: rssFeeds = ["Tennis - Rambler", "Sport.Ru / Tennis", "Sport - Express. Tennis"]
-        case .formula1: rssFeeds = ["Formula-1 - Rambler", "Sport.Ru / Formula-1", "Sport - Express. Formula-1"]
+        case .football: newsTitle = ["Football - Rambler", "Sport.Ru / Footbal", "Sport - Express. Football"]
+        case .hockey: newsTitle = ["Hockey - Rambler", "Sport.Ru / Hockey", "Sport - Express. Hockey"]
+        case .basketball: newsTitle = ["Basketball - Rambler", "Sport.Ru / Basketball", "Sport - Express. Basketball"]
+        case .tennis: newsTitle = ["Tennis - Rambler", "Sport.Ru / Tennis", "Sport - Express. Tennis"]
+        case .formula1: newsTitle = ["Formula-1 - Rambler", "Sport.Ru / Formula-1", "Sport - Express. Formula-1"]
         case .none:
             break
         }
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table view data source + delegate
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return rssFeeds.count
+        return newsTitle.count
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell", for: indexPath) as! FeedTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell", for: indexPath) as! SubscriptionTableViewCell
         
-        let feed = rssFeeds[indexPath.row]
+        let feed = newsTitle[indexPath.row]
         cell.feed = feed
+        let feed1 = checkmark[indexPath.row]
         
-        if chacked == false {
+        if feed1 == false {
             cell.accessoryType = .none
         } else {
             cell.accessoryType = .checkmark
@@ -71,19 +77,26 @@ class FeedsListTableViewController: UITableViewController {
         if let cell = tableView.cellForRow(at: indexPath) {
             if cell.accessoryType == .checkmark {
                 cell.accessoryType = .none
-                let index = rssFeeds[indexPath.row]
-                DataManager.shared.saveFavouriteStatus(for: index, with: false)
+                let index = newsTitle[indexPath.row]
+                DataManager.shared.saveFavouriteFeed(for: index, with: false)
+                if SubscriptionsController.shared.subscriptionsFeed.contains(index) {
+                    if let ndex = SubscriptionsController.shared.subscriptionsFeed.firstIndex(of: index) {
+                        SubscriptionsController.shared.subscriptionsFeed.remove(at: ndex)
+                        DataManager.shared.subscriptionsTitle.remove(at: ndex)
+                    }
+                }
             } else {
                 cell.accessoryType = .checkmark
-                let index = rssFeeds[indexPath.row]
-                DataManager.shared.saveFavouriteStatus(for: index, with: true)
+                let index = newsTitle[indexPath.row]
+                DataManager.shared.saveFavouriteFeed(for: index, with: true)
+                
+                if !SubscriptionsController.shared.subscriptionsFeed.contains(index) {
+                    SubscriptionsController.shared.subscriptionsFeed.append(index)
+                    DataManager.shared.subscriptionsTitle.append(index)
+                    print(DataManager.shared.subscriptionsTitle)
+                }
             }
         }
     }
-    
-    private func loadFavouriteStatus() {
-        for rssFeed in rssFeeds {
-            chacked = DataManager.shared.loadFavouriteStatus(for: rssFeed)
-        }
-    }
 }
+

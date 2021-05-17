@@ -11,6 +11,5 @@ struct RSSItem {
     var title: String
     var description: String
     var publicationDate: String
-    var titleFeed: String
 }
 

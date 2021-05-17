@@ -11,12 +11,13 @@ class SubscriptionsController: UIViewController {
     
     static let shared = SubscriptionsController()
     
-    var subscriptionsFeed = [RSSItem]() {
+    static let subscriptionUpdateNotification = Notification.Name("SubscriptionsController.subscriptionUpdate")
+    
+    var subscriptionsFeed = [String]() {
+        
         didSet{
             NotificationCenter.default.post(name: SubscriptionsController.subscriptionUpdateNotification, object: nil)
         }
     }
-    
-    static let subscriptionUpdateNotification = Notification.Name("SubscriptionsController.subscriptionUpdate")
-
 }
+

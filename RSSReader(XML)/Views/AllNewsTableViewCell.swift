@@ -1,5 +1,5 @@
 //
-//  ChannelTableViewCell.swift
+//  SubscriptionTableViewCell.swift
 //  RSSReader(XML)
 //
 //  Created by Mikhail on 10.05.2021.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class SubscriptionTableViewCell: UITableViewCell {
-    
-    var feed: String! {
+class AllNewsTableViewCell: UITableViewCell {
+
+    var subscription: String! {
         didSet {
-            textLabel?.text = feed
+            textLabel?.text = subscription
             imageView?.image = #imageLiteral(resourceName: "40")
             textLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         }

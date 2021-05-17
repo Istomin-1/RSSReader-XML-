@@ -9,40 +9,42 @@ import UIKit
 
 class NewsCategoriesTableViewController: UITableViewController {
     
-    private var categories = NewsCategories.allCases
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-
-    // MARK: - Table view data source
-
+    //    MARK: - Properties
+    private var categoriesNews = NewsCategories.allCases
+    
+    // MARK: - Table view data source + delegate
     override func numberOfSections(in tableView: UITableView) -> Int {
+        return categoriesNews.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
-    }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
         
-        let cayegory = categories[indexPath.row]
+        let cayegory = categoriesNews[indexPath.section]
         cell.category = cayegory.rawValue
         
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    //    MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "subscriptionsSegue" {
             let indexPath = tableView.indexPathForSelectedRow!
-            let category = categories[indexPath.row]
-            let feedslistTVC = segue.destination as! FeedsListTableViewController
-            feedslistTVC.feeds = category
+            let category = categoriesNews[indexPath.section]
+            let feedsListTVC = segue.destination as! FeedsListTableViewController
+            feedsListTVC.feeds = category
         }
     }
-    
 }
